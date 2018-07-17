@@ -1,0 +1,26 @@
+{
+  "name": "stevepetcu/phpspec-tdd-affordability-exercise",
+  "description": "Service that allows tenants to carry out an affordability check against a list of properties.",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Stefan Petcu",
+      "email": "hello@stefanpetcu.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "symfony/console": "^4.1",
+    "php-di/php-di": "^6.0",
+    "litipk/php-bignumbers": "^0.8"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^4.3",
+    "behat/behat": "^3.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "GoodLord\\": "./src/"
+    }
+  }
+}

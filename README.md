@@ -98,5 +98,5 @@ kept in-memory (which defeats the purpose of using Generators to read the CSV fi
 - The bank statement builder should be improved (generalised) and refactored. It's probably the worst piece of code. Ever.
 - Given the tight schedule (2 working days) to deliver this, it soon became apparent that I wouldn't have time to TDD 
 everything (or much at all). This is far from ideal, but I decided to go at least with the high level Behat tests, to 
-cover the happy path and some of the more obvious unhappy paths, to have a smattering of test coverage. Unit tests are 
-needed in order to avoid the reverse ice-cone issue.
+cover the happy path and some of the more obvious unhappy paths, to at least have some trust in the app. Unit tests are 
+needed in order to avoid the reverse ice-cone issue - it shouldn't be an issue to add them after the fact, as most of the classes have been designed with that in mind (to be decoupled).

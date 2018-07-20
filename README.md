@@ -29,10 +29,14 @@ Install dependencies, run tests and run the application:
 make all
 ```
 
+This command should guide you through the steps to setup the application.
+
 **Note**: you might be required to regenerate the docker machine's certificates (select `y`):
 ```bash
 docker-machine regenerate-certs phpspec-tdd-affordability-exercise
 ```
+
+After setting up the docker machine successfully, repeat the `make all` command.
 
 ## Upping the docker containers
 
@@ -65,6 +69,10 @@ make run
 Run the affordability check:
 ```bash
 make affordability-check <bank_statement_filepath> <property_list_filepath>
+```
+e.g.,:
+```bash
+make affordability-check features/test_files/bank_statement.csv features/test_files/properties.csv
 ```
 
 ## Assumptions

@@ -57,9 +57,14 @@ make test
 
 ## Running the application
 
-Run the application, but skip everything else:
+Run the application's console:
 ```bash
 make run
+```
+
+Run the affordability check:
+```bash
+make affordability-check <bank_statement_filepath> <property_list_filepath>
 ```
 
 ## Assumptions
@@ -68,10 +73,22 @@ make run
 Thus, the assumption is that the data distribution of the information that the service has to deal with will be 
 greatly skewed towards a larger number of properties and relatively little data on the part of the tenant.
 This is reflected in how these data streams are handled by the application.
-- If a tenant's income or expense occurs more than once in the time period that we process, it is considered a recurring
-transaction and it counts towards the tenant's affordability score
+- We consider "Direct Debit" transactions as recurring money out and "Direct Credit" transactions as recurring
+money in.
 - The specification pattern could be extended with a strategy counterpart, having a specification provider alongside a 
-strategy provider injected in the `AffordabilityService` - but YAGNI for this
+strategy provider injected in the `AffordabilityService` - but YAGNI for 
+- We assume that the files containing the bank statement and property information are **readable**.
+- The application was developed on MacOS and I didn't have the opportunity to test it on Linux. Fingers crossed 
+setting it up goes reasonably smoothly.
 
 ## Improvements wanted
+
 - Don't use `root` as user in the php-fpm container.
+- Logs shouldn't be kept in the application's source code folder (or same drive for that matter).
+- For scalability, results should be written in a cache/something like that as they are computed, instead of 
+kept in-memory (which defeats the purpose of using Generators to read the CSV files).
+- The bank statement builder should be improved (generalised) and refactored. It's probably the worst piece of code. Ever.
+- Given the tight schedule (2 working days) to deliver this, it soon became apparent that I wouldn't have time to TDD 
+everything (or much at all). This is far from ideal, but I decided to go at least with the high level Behat tests, to 
+cover the happy path and some of the more obvious unhappy paths, to have a smattering of test coverage. Unit tests are 
+needed in order to avoid the reverse ice-cone issue.

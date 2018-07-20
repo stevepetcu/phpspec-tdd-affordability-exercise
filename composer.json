@@ -12,11 +12,13 @@
     "php": "^7.2",
     "symfony/console": "^4.1",
     "php-di/php-di": "^6.0",
-    "litipk/php-bignumbers": "^0.8"
+    "litipk/php-bignumbers": "^0.8",
+    "monolog/monolog": "^1.23"
   },
   "require-dev": {
     "phpspec/phpspec": "^4.3",
-    "behat/behat": "^3.4"
+    "behat/behat": "^3.4",
+    "phpunit/phpunit": "^7.2"
   },
   "autoload": {
     "psr-4": {

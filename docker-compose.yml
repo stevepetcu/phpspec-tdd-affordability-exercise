@@ -7,3 +7,5 @@ services:
     volumes:
       - ./:/var/www/phpspec-tdd-affordability-exercise
     working_dir: /var/www/phpspec-tdd-affordability-exercise
+    environment:
+      APPLICATION_ENV: docker

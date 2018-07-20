@@ -4,7 +4,7 @@ DOCKER_MACHINE_STATE := $(shell docker-machine ls --filter name=$(DOCKER_MACHINE
 EVALUATED_DOCKER_MACHINE := ${DOCKER_MACHINE_NAME}
 
 .DEFAULT_GOAL := all
-.PHONY: all build up install update test run check-env
+.PHONY: all build up install update test phpspec behat run affordability-check check-env
 
 all: build install test run
 
@@ -20,12 +20,20 @@ install: check-env
 update: check-env
 	docker-compose exec php composer update
 
-test: check-env
+test: check-env phpspec behat
+
+phpspec: check-env
 	docker-compose exec php ./vendor/bin/phpspec run --verbose
 
-run: check-env
-	docker-compose exec php ./bin/console
+behat: check-env
+	docker-compose exec php ./vendor/bin/behat
 
+run: check-env
+	docker-compose exec php ./bin/console.php
+
+# This is a hack in order to avoid typing the lengthier command:
+affordability-check: check-env
+	docker-compose exec php bin/console.php tenant:affordability_check $(filter-out $@,$(MAKECMDGOALS))
 
 check-env:
 ifneq ($(OS),Linux)
